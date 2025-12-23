@@ -19,8 +19,8 @@ must be governed, explained, and held accountable.
 
 Medium article:  
 **Understanding Is the Work: Why Machine Learning Cannot Be Reduced to Optimisation**  
- *link to be added once published*
-https://medium.com/@yassien/understanding-is-the-work-why-machine-learning-cannot-be-reduced-to-optimisation-a12d9b78cef2
+[Understanding is the work: Why Machine Learning Cannot Be Reduced to Optimisation](https://medium.com/@yassien/understanding-is-the-work-why-machine-learning-cannot-be-reduced-to-optimisation-a12d9b78cef2)
+
 ---
 
 ##  What This Article Is About

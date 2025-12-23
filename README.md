@@ -1,4 +1,4 @@
-# Applied ML & AI Systems — Articles
+# Applied ML & AI Systems
 
 This repository contains the **code, notebooks, and experimental artifacts**
 supporting my writing on **applied machine learning, AI systems, and production-grade ML**.
