@@ -17,8 +17,7 @@ of the entire decision system**.
 ## 🔗 Article Link
 
 Medium article:  
-**Uncertainty as a Conserved Quantity in Machine Learning Systems**  
- *link to be added once published*
+[Uncertainty as a Conserved Quantity in Machine Learning Systems](https://medium.com/@yassien/uncertainty-as-a-system-quantity-in-machine-learning-a985ffdc48dd)
 
 ---
 

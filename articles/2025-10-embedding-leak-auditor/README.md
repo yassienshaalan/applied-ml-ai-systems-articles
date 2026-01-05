@@ -16,14 +16,14 @@ ELA provides a structured way to **measure, visualise, and reason about that mem
 
 Medium article:  
 **Embedding Leak Auditor: Measuring Privacy Leakage in Vector Representations**  
-
+[Embeddings, Privacy, and the Leak Auditor: Auditing the Hidden Memory of AI](https://medium.com/@yassien/understanding-is-the-work-why-machine-learning-cannot-be-reduced-to-optimisation-a12d9b78cef2](https://medium.com/@yassien/embeddings-privacy-and-the-leak-auditor-auditing-the-hidden-memory-of-ai-2e7c78339ad9))
 
 ---
 
 ## What This Is About
 
 Embeddings are not neutral.  
-They encode meaning — and in doing so, they encode information about the data used
+They encode meaning  and in doing so, they encode information about the data used
 to train them.
 
 This raises concrete questions that are often discussed abstractly:
@@ -37,34 +37,9 @@ ELA turns these questions into **measurable experiments**, producing actionable
 signals rather than theoretical arguments.
 
 ---
+## The code
+The code is [here](https://github.com/yassienshaalan/embedding_leak_auditor)
 
-## 🔗 Article Link
-
-Medium article:  
-**Understanding Is the Work: Why Machine Learning Cannot Be Reduced to Optimisation**  
- *link to be added once published*
-https://medium.com/@yassien/understanding-is-the-work-why-machine-learning-cannot-be-reduced-to-optimisation-a12d9b78cef2
----
-
-##  What This Article Is About
-
-As ML tooling becomes more powerful, it is increasingly tempting to treat modelling
-as a procedural task:
-- choose a model
-- optimise a metric
-- deploy the result
-
-This article explores why that framing breaks down in practice.
-
-In particular, it focuses on:
-- The gap between strong metrics and genuine understanding
-- How Goodhart’s Law manifests in ML systems
-- Why the most dangerous failures come from *high-performing* models
-- The distinction between procedural optimisation and interpretive judgement
-- What changes when LLMs are introduced into the modelling loop
-
-The goal is not to argue against automation or LLMs, but to clarify **where optimisation
-ends and responsibility begins**.
 
 ---
 

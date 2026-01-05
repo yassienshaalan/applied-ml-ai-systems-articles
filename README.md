@@ -22,13 +22,4 @@ reproducibility where possible.
 
 ---
 
-##  Scope & Themes
-
-Topics covered include (but are not limited to):
-
-- Understanding is the work: Why Machine Learning Cannot Be Reduced to Optimisation 
-- Uncertainty as a System Quantity in Machine Learning  
-
----
-
 
