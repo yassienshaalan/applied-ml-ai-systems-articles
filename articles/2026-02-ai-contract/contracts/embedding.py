@@ -1,5 +1,4 @@
 """
-contracts/embedding.py — Embedding Contract (pure Python + numpy)
 
 Treats embedding upgrades as architectural events, not implementation details.
 Enforces dimension compatibility, distributional stability, and neighbourhood stability.
