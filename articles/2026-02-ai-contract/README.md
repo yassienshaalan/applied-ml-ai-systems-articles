@@ -4,11 +4,11 @@ This folder contains the code, experiments, and supporting material for the arti
 
 **"AI Contracts: Engineering Boundaries in Systems That Generate"**
 
-The article argues that generative AI systems fail not dramatically but silently — prompts drift, retrieval corpora shift, embedding models are swapped, and tool calls encode impossible operations, all without triggering alerts. It proposes a contract-first architecture where explicit, testable boundaries are enforced at each generative interface, in the same way mature software systems enforce contracts at APIs and services.
+The article argues that generative AI systems fail not dramatically but silently like prompts drift, retrieval corpora shift, embedding models are swapped, and tool calls encode impossible operations, all without triggering alerts. It proposes a contract-first architecture where explicit, testable boundaries are enforced at each generative interface, in the same way mature software systems enforce contracts at APIs and services.
 
 ---
 
-## 🔗 Article Link
+## Article Link
 
 Medium article:
 **AI Contracts: Engineering Boundaries in Systems That Generate**
@@ -21,11 +21,11 @@ Medium article:
 As generative AI systems have become more capable, their failure modes have changed:
 
 - Prompts behave like APIs but have no schemas, so minor refactors silently break downstream behaviour.
-- Retrieval systems are monitored for latency and recall, but not for *which sources* they rely on — allowing grounding to drift invisibly.
+- Retrieval systems are monitored for latency and recall, but not for *which sources* they rely on, allowing grounding to drift invisibly.
 - Embedding model upgrades are treated as implementation details, when they are in fact architectural changes that shift the geometry of the entire meaning space.
 - Tool calls are validated structurally (valid JSON) but not semantically, allowing logically impossible operations to pass silently into execution.
 
-The question is not whether these systems fail, but whether failures are made visible at the boundary where they occur — or allowed to accumulate silently until they surface as degraded behaviour in production.
+The question is not whether these systems fail, but whether failures are made visible at the boundary where they occur, or allowed to accumulate silently until they surface as degraded behaviour in production.
 
 ## Why This Matters
 
@@ -106,10 +106,13 @@ Each contract is a plain Python dataclass with a `.validate()` or `.check()` met
 
 The key insight: contracts run *outside* the model, at the system boundary. The LLM stays flexible; the surrounding architecture enforces structure.
 
-### Branches
+## Experiment Results
 
-| Branch | Purpose |
-|--------|---------|
-| `main` | Stable baseline |
-| `experiments/ai-contracts-validation` | Active experiment work |
-| `fix/article-folder-imports` | Resolved ModuleNotFoundError for article folder layout |
+The `results/` folder contains the raw JSON output from each experiment run.
+
+- **`prompt_drift.json`** — responses from all three prompt variants (production, tone refactor, brevity refactor) with contract pass/fail status and violation details. 1/3 passed; both refactors failed on missing required fields.
+- **`retrieval_instability.json`** — baseline vs updated retrieval sources, Jaccard overlap score, and which contract checks fired. Jaccard dropped to 0.00 — zero source overlap between the two corpus snapshots — with an external blog post surfacing in top results.
+- **`tool_violations.json`** — static test classifications plus live LLM-generated tool calls showing what the contract blocked before execution. 7/7 correctly classified; the LLM faithfully generated an impossible return-before-departure booking which was caught at the semantic rule boundary.
+- **`embedding_upgrade.json`** — dimension check, cross-similarity (-0.0062), and neighbourhood overlap (0.85) from comparing `text-embedding-3-small` vs `text-embedding-ada-002` on the same corpus. Both models output 1536 dimensions — structurally identical — but near-zero cross-similarity flags the upgrade as an architectural change. Neighbourhood stability partially holds, suggesting relative document ordering is more robust to model swaps than absolute vector representations.
+
+These are the empirical outputs the article's conclusions are drawn from.
