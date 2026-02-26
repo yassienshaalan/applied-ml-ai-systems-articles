@@ -71,7 +71,6 @@ It mirrors the four failure modes described in the article:
 │   ├── test_embedding_contracts.py
 │   └── test_tool_contracts.py
 ├── results/                 # Saved experiment outputs (JSON)
-├── conftest.py              # Shared fixtures (OpenAI client, models)
 ├── run_tests.py             # Lightweight runner — no pytest required
 ├── runner.py                # Run all experiments and print a summary report
 └── requirements.txt
