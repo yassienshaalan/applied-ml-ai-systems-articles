@@ -1,5 +1,4 @@
 """
-contracts/tool.py — Tool Contract (pure Python)
 
 The boundary between generation and tool execution.
 Validates both schema (structural) AND semantic invariants.
