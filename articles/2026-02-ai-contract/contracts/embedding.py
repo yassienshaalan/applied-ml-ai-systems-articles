@@ -5,7 +5,7 @@ Treats embedding upgrades as architectural events, not implementation details.
 Enforces dimension compatibility, distributional stability, and neighbourhood stability.
 """
 
-from __future__ import annotations
+ffrom __future__ import annotations
 from dataclasses import dataclass
 import numpy as np
 
@@ -41,10 +41,8 @@ class EmbeddingContract:
         if len(baseline) != len(updated):
             raise EmbeddingContractViolation("distributional_stability",
                 f"Baseline has {len(baseline)} embeddings but updated has {len(updated)}.")
-
         sims = [_cosine_sim(np.array(a), np.array(b)) for a, b in zip(baseline, updated)]
         score = float(np.mean(sims))
-
         if score < self.min_mean_cross_similarity:
             raise EmbeddingContractViolation("min_mean_cross_similarity",
                 f"Mean cross-similarity {score:.4f} < minimum {self.min_mean_cross_similarity:.4f}. "
@@ -56,8 +54,7 @@ class EmbeddingContract:
     ) -> float:
         n = len(baseline)
         if n < k + 1:
-            return 1.0  # Not enough vectors — skip check
-
+            return 1.0
         ba = np.array(baseline, dtype=np.float64)
         ua = np.array(updated, dtype=np.float64)
 
@@ -74,7 +71,6 @@ class EmbeddingContract:
             inter = b_nb & u_nb
             union = b_nb | u_nb
             overlaps.append(len(inter) / len(union) if union else 1.0)
-
         mean_overlap = float(np.mean(overlaps))
         if mean_overlap < self.min_neighbourhood_overlap:
             raise EmbeddingContractViolation("min_neighbourhood_overlap",
