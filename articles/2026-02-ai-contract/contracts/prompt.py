@@ -1,5 +1,4 @@
 """
-contracts/prompt.py — Prompt Contract (pure Python, no pydantic)
 
 The boundary between prompt and model output.
 Treats prompts like APIs: explicit schemas, testable invariants.
