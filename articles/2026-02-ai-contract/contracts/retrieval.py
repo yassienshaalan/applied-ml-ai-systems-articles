@@ -1,6 +1,4 @@
 """
-contracts/retrieval.py — Retrieval Contract (pure Python)
-
 Enforces source stability, drift thresholds, and allowlists.
 Makes retrieval drift measurable — not hidden behind fluent generation.
 """
