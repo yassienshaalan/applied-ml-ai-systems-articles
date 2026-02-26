@@ -3,7 +3,6 @@ runner.py — Run all experiments and print a consolidated report.
 
 Usage:
     python runner.py
-    python runner.py --skip-live    # Skip experiments that require API calls
 """
 
 import json
