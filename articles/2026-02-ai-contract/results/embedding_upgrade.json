@@ -1,0 +1,15 @@
+{
+  "model_v1": "text-embedding-3-small",
+  "model_v2": "text-embedding-ada-002",
+  "corpus_size": 10,
+  "dim_v1": 1536,
+  "dim_v2": 1536,
+  "dimension_check_passed": true,
+  "distributional_check_passed": false,
+  "neighbourhood_check_passed": true,
+  "cross_similarity_score": -0.006162047784922969,
+  "neighbourhood_overlap_score": 0.85,
+  "violations": [
+    "EmbeddingContract violation [min_mean_cross_similarity]: Mean cross-similarity -0.0062 < minimum 0.9000. Treat embedding upgrade as an architectural change requiring re-baselining."
+  ]
+}
