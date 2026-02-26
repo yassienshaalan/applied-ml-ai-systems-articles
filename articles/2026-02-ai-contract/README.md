@@ -11,8 +11,7 @@ The article argues that generative AI systems fail not dramatically but silently
 ## Article Link
 
 Medium article:
-**AI Contracts: Engineering Boundaries in Systems That Generate**
-*(link to be added on publication)*
+[AI Contracts: Engineering Boundaries in Systems That Generate](https://medium.com/p/21a8e294c813)
 
 ---
 
