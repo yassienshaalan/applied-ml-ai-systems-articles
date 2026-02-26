@@ -1,0 +1,9 @@
+{
+  "baseline_passed": true,
+  "updated_passed": false,
+  "drift_passed": false,
+  "baseline_violation": null,
+  "updated_violation": "RetrievalContract violation [allowed_sources]: Source 'external_blog_post' not in allowed set.",
+  "drift_violation": "RetrievalContract violation [min_jaccard_overlap]: Source overlap dropped to 0.00 (minimum: 0.50). Lost: {'policy_v1_sec1', 'policy_v1_sec5', 'policy_v1_sec2'}. Gained: {'external_blog_post', 'policy_v2_chunk_b', 'policy_v2_chunk_a'}.",
+  "jaccard_score": null
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "variant": "v1_production",
+    "description": "Original production prompt",
+    "compliant": true,
+    "violation": null,
+    "raw_response": "{\n  \"answer\": \"Paris\",\n  \"confidence\": \"high\",\n  \"sources\": [\n    \"Encyclopedia Britannica\",\n    \"History.com\",\n    \"National Geographic\"\n  ],\n  \"reasoning\": \"Paris is the capital of France and has been a major center of art, fashion, and culture for centuries. It played a crucial role in historical events such as the French Revolution and has been a hub for intellectual movements and political developments in Europe.\"\n}"
+  },
+  {
+    "variant": "v2_tone_refactor",
+    "description": "Tone refactor (friendlier) \u2014 renames fields",
+    "compliant": false,
+    "violation": "PromptContract violation [required_field]: Missing field 'answer'.",
+    "raw_response": "{\n  \"response\": \"The capital of France is Paris! It's not just a beautiful city; it's also historically significant for many reasons. Paris has been a center of art, culture, and politics for centuries. It played a crucial role during the French Revolution, was the heart of the Enlightenment, and has been the site of many important events in European history. Plus, it's home to iconic landmarks like the Eiffel Tower and the Louvre, which attract millions of visitors each year!\",\n  \"confidence_level\": 95,\n  \"sources\": [\n    \"Encyclopedia Britannica\",\n    \"History.com\",\n    \"National Geographic\"\n  ],\n  \"reasoning\": \"I know that Paris is the capital of France and its historical significance is well-documented. The information is widely available in reputable sources, and I feel confident in sharing this with you!\"\n}"
+  },
+  {
+    "variant": "v3_brevity_refactor",
+    "description": "Brevity refactor \u2014 drops required fields",
+    "compliant": false,
+    "violation": "PromptContract violation [required_field]: Missing field 'sources'.",
+    "raw_response": "{\"answer\": \"Paris\", \"confidence\": \"high\"}"
+  }
+]

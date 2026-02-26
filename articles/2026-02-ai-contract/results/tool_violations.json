@@ -1,0 +1,147 @@
+{
+  "static_tests": [
+    {
+      "scenario": "Valid round-trip",
+      "args": {
+        "origin": "LHR",
+        "destination": "JFK",
+        "depart_date": "2025-06-01",
+        "return_date": "2025-06-15",
+        "passengers": 2,
+        "cabin_class": "economy"
+      },
+      "should_pass": true,
+      "passed": true,
+      "violation": null,
+      "correctly_classified": true
+    },
+    {
+      "scenario": "Return before departure (impossible trip)",
+      "args": {
+        "origin": "LHR",
+        "destination": "JFK",
+        "depart_date": "2025-06-15",
+        "return_date": "2025-06-01",
+        "passengers": 1,
+        "cabin_class": "economy"
+      },
+      "should_pass": false,
+      "passed": false,
+      "violation": "ToolContract violation [semantic_rule:return_after_departure]: return_date must be on or after depart_date",
+      "correctly_classified": true
+    },
+    {
+      "scenario": "Too many passengers (exceeds max)",
+      "args": {
+        "origin": "CDG",
+        "destination": "LAX",
+        "depart_date": "2025-07-01",
+        "passengers": 12,
+        "cabin_class": "business"
+      },
+      "should_pass": false,
+      "passed": false,
+      "violation": "ToolContract violation [parameter_max_value]: 'passengers'=12 exceeds maximum 9.",
+      "correctly_classified": true
+    },
+    {
+      "scenario": "Invalid cabin class (structurally valid JSON, semantically invalid)",
+      "args": {
+        "origin": "SYD",
+        "destination": "SIN",
+        "depart_date": "2025-08-10",
+        "passengers": 1,
+        "cabin_class": "premium_economy"
+      },
+      "should_pass": false,
+      "passed": false,
+      "violation": "ToolContract violation [parameter_allowed_values]: 'cabin_class'='premium_economy' not in ['economy', 'business', 'first'].",
+      "correctly_classified": true
+    },
+    {
+      "scenario": "Infants without adults (3 infants, 3 total \u2014 all infants!)",
+      "args": {
+        "origin": "DXB",
+        "destination": "BOM",
+        "depart_date": "2025-09-01",
+        "passengers": 3,
+        "infant_passengers": 3,
+        "cabin_class": "economy"
+      },
+      "should_pass": false,
+      "passed": false,
+      "violation": "ToolContract violation [semantic_rule:no_infant_without_adult]: Infant passengers require at least one adult (total passengers > infant count)",
+      "correctly_classified": true
+    },
+    {
+      "scenario": "Same origin and destination",
+      "args": {
+        "origin": "LHR",
+        "destination": "LHR",
+        "depart_date": "2025-05-01",
+        "passengers": 1,
+        "cabin_class": "first"
+      },
+      "should_pass": false,
+      "passed": false,
+      "violation": "ToolContract violation [semantic_rule:origin_ne_destination]: Origin and destination must be different airports",
+      "correctly_classified": true
+    },
+    {
+      "scenario": "Valid one-way with infant and adult",
+      "args": {
+        "origin": "ORD",
+        "destination": "MIA",
+        "depart_date": "2025-10-01",
+        "passengers": 2,
+        "infant_passengers": 1,
+        "cabin_class": "economy"
+      },
+      "should_pass": true,
+      "passed": true,
+      "violation": null,
+      "correctly_classified": true
+    }
+  ],
+  "llm_tests": [
+    {
+      "prompt": "Book a return flight from London to New York, 2 adults, economy, departing June 1st returning June 15th 2025.",
+      "args": {
+        "origin": "LON",
+        "destination": "NYC",
+        "depart_date": "2025-06-01",
+        "return_date": "2025-06-15",
+        "passengers": 2,
+        "cabin_class": "economy"
+      },
+      "passed": true,
+      "violation": null
+    },
+    {
+      "prompt": "Book a flight returning before it departs \u2014 from Paris to LA, depart July 10th, return July 5th 2025, 1 passenger, business.",
+      "args": {
+        "origin": "CDG",
+        "destination": "LAX",
+        "depart_date": "2025-07-10",
+        "return_date": "2025-07-05",
+        "passengers": 1,
+        "cabin_class": "business"
+      },
+      "passed": false,
+      "violation": "ToolContract violation [semantic_rule:return_after_departure]: return_date must be on or after depart_date"
+    },
+    {
+      "prompt": "I need 3 infant seats on a flight from Dubai to Mumbai, no adult seats, economy, September 1st 2025.",
+      "args": {
+        "origin": "DXB",
+        "destination": "BOM",
+        "depart_date": "2025-09-01",
+        "passengers": 0,
+        "infant_passengers": 3,
+        "cabin_class": "economy"
+      },
+      "passed": false,
+      "violation": "ToolContract violation [parameter_min_value]: 'passengers'=0 below minimum 1."
+    }
+  ]
+}
