@@ -7,7 +7,7 @@ Makes retrieval drift measurable — not hidden behind fluent generation.
 
 from __future__ import annotations
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 
@@ -23,7 +23,7 @@ class RetrievedChunk:
     source_id: str
     content: str
     score: float
-    retrieved_at: datetime = field(default_factory=datetime.utcnow)
+    retrieved_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
@@ -52,13 +52,12 @@ class RetrievalContract:
                 raise RetrievalContractViolation("blocked_sources",
                     f"Source '{chunk.source_id}' is explicitly blocked.")
             if self.max_age_days is not None:
-                age = datetime.utcnow() - chunk.retrieved_at
+                age = datetime.now(timezone.utc) - chunk.retrieved_at
                 if age > timedelta(days=self.max_age_days):
                     raise RetrievalContractViolation("max_age_days",
                         f"Chunk from '{chunk.source_id}' is {age.days} days old, max is {self.max_age_days}.")
 
     def check_drift(self, baseline: list[RetrievedChunk], updated: list[RetrievedChunk]) -> float:
-        """Returns Jaccard similarity. Raises if below threshold."""
         a = {c.source_id for c in baseline}
         b = {c.source_id for c in updated}
         union = a | b
