@@ -2,7 +2,6 @@
 run_tests.py — Lightweight test runner (no pytest required).
 
 Run with: python run_tests.py
-For live API tests: python run_tests.py --live
 
 If you have pytest installed, you can also run: pytest tests/ -v [--live]
 """
