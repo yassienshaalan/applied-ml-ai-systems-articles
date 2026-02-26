@@ -5,7 +5,7 @@ Treats embedding upgrades as architectural events, not implementation details.
 Enforces dimension compatibility, distributional stability, and neighbourhood stability.
 """
 
-ffrom __future__ import annotations
+from __future__ import annotations
 from dataclasses import dataclass
 import numpy as np
 
